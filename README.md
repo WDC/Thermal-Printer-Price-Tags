@@ -26,19 +26,36 @@ A modern web interface for creating and printing ZPL labels using Zebra Browser 
 npm install
 ```
 
-2. Replace the mock Browser Print library:
-   - Download the actual Zebra Browser Print SDK
+2. **Set up Zebra Browser Print** (for real printer functionality):
+   - See [BROWSER_PRINT_SETUP.md](./BROWSER_PRINT_SETUP.md) for detailed setup instructions
+   - Download and install Browser Print desktop application
+   - Download the Browser Print JavaScript SDK
    - Replace `public/BrowserPrint-3.1.250.min.js` with the real SDK file
+
+   **Note**: The current setup includes a mock SDK for development/testing without a physical printer.
 
 ## Development
 
-Start the development server:
+### Development Mode (with Mock Printer)
+
+The application includes a mock Browser Print SDK that simulates printer functionality:
 
 ```bash
 npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+- Labels will be logged to the browser console instead of printing
+- All features work normally except actual printing
+- Perfect for development and testing UI/UX
+
+### Production Mode (with Real Printer)
+
+1. Follow the [Browser Print Setup Guide](./BROWSER_PRINT_SETUP.md)
+2. Replace the mock SDK with the real one
+3. Start the development server
+4. Connect to a physical Zebra printer
 
 ## Production Build
 

@@ -26,8 +26,8 @@ export class BrowserPrintService {
 
       window.BrowserPrint.getDefaultDevice(
         "printer",
-        (device: Printer) => {
-          this.device = new window.BrowserPrint.Device(device);
+        (device: any) => {
+          this.device = device;
           resolve(device);
         },
         (error: any) => {

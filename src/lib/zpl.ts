@@ -40,15 +40,13 @@ export function generateZPL(data: LabelData): string {
   zpl += `^FO${priceXPosition},210^FD${priceString}^FS\n`;
 
   // Sales tax text
-  zpl += "^CF0,32\n";
-  zpl += "^FO440,360^FDSales Tax Incl.^FS\n\n";
+  zpl += "^FO440,360^A@N,32,32,E:TT0003M_.TTF^FDSales Tax Incl.^FS\n\n";
 
   // Features
-  zpl += "^CF0,29\n";
   const featureYPositions = [90, 120, 150];
   features.forEach((feature, index) => {
     if (index < 3 && feature.trim()) {
-      zpl += `^FO276,${featureYPositions[index]}^FD- ${feature}^FS\n`;
+      zpl += `^FO276,${featureYPositions[index]}^A@N,29,29,E:TT0003M_.TTF^FD- ${feature}^FS\n`;
     }
   });
 

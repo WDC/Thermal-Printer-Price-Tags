@@ -3,9 +3,12 @@ import { LabelForm } from "./components/LabelForm";
 import { LabelPreview } from "./components/LabelPreview";
 import { PrintQueue } from "./components/PrintQueue";
 import { type LabelData } from "./lib/zpl";
-import { Printer, Package } from "lucide-react";
+import { Printer, Package, Moon, Sun } from "lucide-react";
+import { useTheme } from "./hooks/useTheme";
+import { Button } from "./components/ui/button";
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
   const [queue, setQueue] = useState<LabelData[]>([]);
   const [currentPreview, setCurrentPreview] = useState<LabelData | null>(null);
   const [editingLabel, setEditingLabel] = useState<LabelData | null>(null);
@@ -62,11 +65,26 @@ function App() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10">
-              <Package className="h-5 w-5 text-primary" />
-              <span className="font-semibold text-primary">
-                {queue.length} in queue
-              </span>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full"
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10">
+                <Package className="h-5 w-5 text-primary" />
+                <span className="font-semibold text-primary">
+                  {queue.length} in queue
+                </span>
+              </div>
             </div>
           </div>
         </div>
